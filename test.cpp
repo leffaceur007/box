@@ -24,9 +24,15 @@ int main()
 
     char* cat_str = str_pas_cat(sp1, sp2);
     size_t len3 = str_pas_len(cat_str);
-    printf("The lenght of your pascal strings p1 and p2 isd \n", len3);
+    printf("The lenght of your pascal strings p1 and p2 is %d \n", len3);
 
+    
+    size_t count =  str_pas_replace(cat_str, 'a', 'A');
+    printf("%9.9s\n", &cat_str[1]);
+    printf("%d\n", count);
+	    
     free(cat_str);
+    
 
 
     return 0;
@@ -46,16 +52,32 @@ char* str_pas_cat(char* sp1, char* sp2)
     *ptr = len1 + len2;
     ptr++;
 
-    for (int i = 0; i < len1; i++)
+    for (int i = 1; i <= len1; i++)
     {
    	 *ptr = sp1[i];
 	 ptr++;
     }
-    for (int i = 0; i < len2; i++)
+    for (int i = 1; i <= len2; i++)
     {
  	*ptr = sp2[i];
 	ptr++;
     }
 
     return cat_str;
+}
+
+
+size_t str_pas_replace(char* str, char find, char replace) {
+	size_t count = 0;
+	char* ptr = str; 
+
+	for (int i = 1; i <= str[0]; i++) {
+		if (ptr[i] == find) {
+			ptr[i] = replace;
+			count ++;
+		}
+	}
+
+	return count;
+
 }
